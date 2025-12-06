@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  expense-agent-telegram:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
