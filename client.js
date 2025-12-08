@@ -228,7 +228,16 @@ async function runAgentForText(chatId, userText) {
 
 // ----------------- TELEGRAM BOT WIRING -----------------
 
-const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, { polling: true });
+    const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, {
+      request: {
+        agentOptions: {
+          keepAlive: true,
+          family: 4, // Force IPv4
+        },
+        url: "https://api.telegram.org",
+      },
+      polling: true,
+    });
 
 bot.on("message", async (msg) => {
   const chatId = msg.chat.id;
